@@ -1,12 +1,21 @@
 package com.example.ecommerce.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "invoices")
 public class Invoice {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private double quantity;
     private double price;
     private double total;
-
+    @OneToOne
+    private Purchase purchase;
+    @ManyToOne
+    private Product product;
     public Invoice(){
 
     }
@@ -55,6 +64,22 @@ public class Invoice {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public Purchase getPurchase() {
+        return purchase;
+    }
+
+    public void setPurchase(Purchase purchase) {
+        this.purchase = purchase;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override

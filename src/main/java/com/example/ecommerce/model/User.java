@@ -1,6 +1,14 @@
 package com.example.ecommerce.model;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String username;
@@ -9,12 +17,15 @@ public class User {
     private String telephone;
     private String rol;
     private String password;
-
-
+    @OneToMany(mappedBy = "user")
+    private List<Product> products;
+    @OneToMany(mappedBy = "user")
+    private List<Purchase> purchases;
     public User(){
 
     }
-    public User(Integer id, String name, String username, String email, String direction, String telephone, String rol, String password) {
+    public User(Integer id, String name, String username, String email, String direction, String telephone, String rol,
+                String password, List<Product> products, List<Purchase> purchases) {
         super();
         this.id = id;
         this.name = name;
@@ -24,6 +35,8 @@ public class User {
         this.telephone = telephone;
         this.rol = rol;
         this.password = password;
+        this.products = products;
+        this.purchases = purchases;
     }
 
     public Integer getId() {
@@ -88,6 +101,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public List<Purchase> getPurchases(){
+        return purchases;
+    }
+
+    public void getPurchases(List<Purchase> purchases){
+        this.purchases = purchases;
     }
 }
 

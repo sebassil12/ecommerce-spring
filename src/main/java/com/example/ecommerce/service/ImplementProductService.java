@@ -5,13 +5,14 @@ import com.example.ecommerce.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 public class ImplementProductService implements ProductService{
     @Autowired
     private ProductRepository productRepository;
     @Override
-    public Product saveProduct(Product product) {
+    public Product save(Product product) {
         return productRepository.save(product);
     }
 
@@ -28,5 +29,10 @@ public class ImplementProductService implements ProductService{
     @Override
     public void delete(Integer id) {
         productRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Product> findAll(){
+        return productRepository.findAll();
     }
 }

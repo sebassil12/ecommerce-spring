@@ -25,7 +25,7 @@ public class User {
 
     }
     public User(Integer id, String name, String username, String email, String direction, String telephone, String rol,
-                String password, List<Product> products, List<Purchase> purchases) {
+                String password) {
         super();
         this.id = id;
         this.name = name;
@@ -35,8 +35,7 @@ public class User {
         this.telephone = telephone;
         this.rol = rol;
         this.password = password;
-        this.products = products;
-        this.purchases = purchases;
+
     }
 
     public Integer getId() {

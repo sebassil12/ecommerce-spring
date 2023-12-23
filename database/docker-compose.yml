@@ -6,14 +6,14 @@ services:
     container_name: ecommercepsql
     environment:
       - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=EcommErce.sql1
+      - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=ecommerce-spring
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/postgres_data
+      - postgres_data:/var/lib/postgresql/data/pgdata
     networks:
-      - spring_network
+      - ecommerce
  
   
   pgadmin:
@@ -25,12 +25,12 @@ services:
     ports:
       - "80:80"
     volumes:
-      - pg_data:/var/lib/pg_data
+      - pg_data:/var/lib/postgresql/data/pgdata
     networks:
-      - spring_network
+      - ecommerce
  
 networks:
-  spring_network:
+  ecommerce:
     driver: bridge
 
 volumes:
